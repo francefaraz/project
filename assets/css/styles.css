@@ -239,6 +239,13 @@ img {
 .footer-icon:hover {
   color: var(--first-color);
 }
+
+/* .home-img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+} */
+
 .home-img {
   position: absolute;
   right: 0;
@@ -614,4 +621,10 @@ img.man-icons {
   .home-img {
     right: 10%;
   }
+}
+
+#jobTitleContainer {
+  width: auto; /* Set a fixed width to reserve space for the longest potential job title */
+  display: inline-block;
+  overflow: hidden;
 }

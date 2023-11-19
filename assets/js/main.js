@@ -91,17 +91,55 @@ sr.reveal(".project-img", { interval: 200 });
   }
 
 
-  var messageArr = ["MERN Developer", "Frontend Developer", "Backend Developer"];
-  var textPosition = 0;
-  var speed = 200;
+  // var messageArr = ["MERN Developer", "Frontend Developer", "Backend Developer"];
+  // var textPosition = 0;
+  // var speed = 200;
 
-  typewriter = () => {
-    // for(let i = 0; i < messageArr.length; i++) {
-    document.querySelector("#jobTitle").innerHTML = messageArr[0].substring(0, textPosition)  ;
-    if(textPosition ++  != messageArr[0].length)
-        setTimeout(typewriter, speed)
+  // typewriter = () => {
+  //   for(let i = 0; i < messageArr.length; i++) {
+  //   document.querySelector("#jobTitle").innerHTML = messageArr[i].substring(0, textPosition)  ;
+  //   if(textPosition ++  != messageArr[i].length)
+  //       setTimeout(typewriter, speed)
+  //   }
+  // }
+
+
+  // window.addEventListener("load" , typewriter);
+// Text for typewriter effect
+const jobTitles = ['Sr. Programmer', 'Web Developer', 'Android Developer', 'Gamer', 'Youtuber'];
+let index = 0;
+let letterIndex = 0;
+let text = '';
+let isDeleting = false;
+
+function type() {
+  const jobTitleElement = document.getElementById('jobTitle');
+  const currentText = jobTitles[index];
+
+  if (isDeleting) {
+    text = currentText.substring(0, letterIndex - 1);
+    jobTitleElement.textContent = text;
+    letterIndex--;
+
+    if (text === '') {
+      isDeleting = false;
+      index = (index + 1) % jobTitles.length;
+      setTimeout(type, 500); // Delay after clearing text
+    } else {
+      setTimeout(type, 50); // Speed of deleting text
+    }
+  } else {
+    text = currentText.substring(0, letterIndex + 1);
+    jobTitleElement.textContent = text;
+    letterIndex++;
+
+    if (text === currentText) {
+      isDeleting = true;
+      setTimeout(type, 1000); // Delay after displaying full text
+    } else {
+      setTimeout(type, 150); // Speed of typing text
+    }
   }
+}
 
-
-  window.addEventListener("load" , typewriter);
-
+document.addEventListener('DOMContentLoaded', type);
